@@ -1,3 +1,6 @@
+from numpy import transpose as numpy_transpose 
+from numpy import reshape as numpy_reshape 
+
 def create_initial_state_hex(hex):
     """
     Format hexadecimal values into a 2D array with columns of 4, transposed.
@@ -8,9 +11,11 @@ def create_initial_state_hex(hex):
 
 
 def create_initial_state_ascii(ascii):
-    num_cols = 4
-    initial_state = [ascii[i:i+num_cols] for i in range(0, len(ascii), num_cols)]
-    return initial_state
+    # num_cols = 4
+    # initial_state = [ascii[i:i+num_cols] for i in range(0, len(ascii), num_cols)]
+    # return initial_state
+    return numpy_transpose(numpy_reshape(ascii, (-1, 4)))
+
 
 def create_subkey_array(subkeys_text):
     """
@@ -33,6 +38,8 @@ def create_hex_to_ascii_matrix(hex_string):
         column = [int(hex_string[j : j + 2], 16) for j in range(i, len(hex_string), 8)]
         matrix.append(column)
     return matrix
+    # return numpy_transpose(numpy_reshape(arr, (-1, 4)))
+
 
 
 def create_ascii_to_hex_matrix(matrix):

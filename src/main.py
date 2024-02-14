@@ -1,6 +1,7 @@
 import sys
 sys.path.append('../') 
 
+
 from helper.function import read_text_file, round_key
 from helper.convert import convert_plaintext_to_ascii, convert_ascii_to_hex
 from helper.create import create_initial_state_hex, create_initial_state_ascii, create_subkey_array, create_hex_to_ascii_matrix, create_ascii_to_hex_matrix
@@ -9,9 +10,15 @@ from encryption_operations.shift_rows import shift_rows
 from encryption_operations.mix_columns import mix_columns
 
 
+
+
+
 plaintext_file ="../data/plaintext.txt"
 result_file = "../data/result.txt"
 subkey_file = "../data/subkey_example.txt"
+result_subkey_file = "../data/result_subkey.txt"
+
+
 
 
 
@@ -39,6 +46,8 @@ initial_state_hex = create_initial_state_hex(hex_plaintext)
 print("initial_state_hex\n", initial_state_hex)
 initial_state_ascii = create_initial_state_ascii(ascii_plaintext)
 print("initial_state_ascii\n", initial_state_ascii)
+
+
 
 
 '''
@@ -72,7 +81,6 @@ AddKey with subkey1). The matrix for MixColumns can be found in Lecture 5, and h
 the corresponding multiplication over bytes can be found in Lecture 10
 '''
 
-
 '''
 SubBytes
 '''
@@ -104,7 +112,7 @@ print("hex_state_after_mixcolumns\n", hex_state_after_mixcolumns)
 Another AddKey
 '''
 
-subkey1_hex_string = subkeys_hex_string[0]
+subkey1_hex_string = subkeys_hex_string[1]
 subkey1_ascii_matrix = create_hex_to_ascii_matrix(subkey1_hex_string)
 print("subkey1_ascii_matrix\n", subkey1_ascii_matrix)
 subkey1_hex_matrix = create_ascii_to_hex_matrix(subkey1_ascii_matrix)
@@ -115,6 +123,10 @@ print("add_round_key_ascii_1\n", add_round_key_ascii_1)
 
 add_round_key_hex_1 = create_ascii_to_hex_matrix(add_round_key_ascii_1)
 print("add_round_key_hex_1\n", add_round_key_hex_1) 
+
+
+
+
 
 
 '''
@@ -149,7 +161,7 @@ write_to_output = [
     "\n\n\nStep 5: AddKey Part 2\n\n",
     "\nSubkey 1 Hex Matrix: ",
     subkey1_hex_matrix,
-    "\n\n\n\n\n\After RoundKey Hex Matrix (THIS IS THE FINAL ENCRYPTED VALUE.): ",
+    "\n\n\n\n\nAfter RoundKey Hex Matrix (THIS IS THE FINAL ENCRYPTED VALUE.): ",
     add_round_key_hex_1
 ]
 
@@ -158,6 +170,11 @@ with open(result_file, "w") as file:
     for item in write_to_output:
         file.write(str(item) + "\n")
 
+
+
+
+
+
 '''
 Additional: 
 Read the first subkey from file “../data/subkey example.txt”, generate the next subkey using sub-
@@ -165,4 +182,4 @@ key schedule algorithm in AES. Print the next subkey in terminal and write the r
 “../data/result_subkey.txt”. The result needs to be printed and written in hexadecimal.
 '''
 
-result_subkey_file = "../data/result_subkey.txt"
+subkey0_hex_string = subkeys_hex_string[0]

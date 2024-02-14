@@ -7,13 +7,18 @@ def read_text_file(file_path):
     except FileNotFoundError:
         print(f"File '{file_path}' not found.")
         return None
-    
 
-def round_key(state, subkey):
+def round_key(initial_state, subkey):
     """
     Perform AddRoundKey operation on the state using the subkey.
     """
-    for i in range(4):
-        for j in range(4):
-            state[i][j] ^= subkey[i][j]
-    return state
+    result = []
+
+    for i in range(len(initial_state)):
+        row = []
+        for j in range(len(initial_state[i])):
+            xor_result = initial_state[i][j] ^ subkey[i][j]
+            row.append(xor_result)
+        result.append(row)
+
+    return result
