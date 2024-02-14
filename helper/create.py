@@ -8,23 +8,13 @@ def create_initial_state_hex(hex):
 
 
 def create_initial_state_ascii(ascii):
-    """
-    Format hexadecimal values into a 2D matrix with columns of 4, transposed.
-    """
-    hex_matrix = [ascii[i : i + 4] for i in range(0, len(ascii), 4)]
-    transposed_hex_matrix = [[row[i] for row in hex_matrix] for i in range(4)]
-    return transposed_hex_matrix
-
+    num_cols = 4
+    initial_state = [ascii[i:i+num_cols] for i in range(0, len(ascii), num_cols)]
+    return initial_state
 
 def create_subkey_array(subkeys_text):
     """
     Split the contents of the text file into two parts and create an array for each subkey value.
-
-    Args:
-    subkeys_text (str): The contents of the text file containing subkey values.
-
-    Returns:
-    list of list: A list containing arrays for each subkey value.
     """
     subkey_list = subkeys_text.strip().split('\n\n')
     subkey_arrays = []
