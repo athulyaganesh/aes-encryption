@@ -8,8 +8,7 @@ from helper.create import create_initial_state_hex, create_initial_state_ascii, 
 from encryption_operations.sub_bytes import  generate_sub_bytes
 from encryption_operations.shift_rows import shift_rows
 from encryption_operations.mix_columns import mix_columns
-
-
+from subkey_schedule.subkey_schedule_generator import new_subkey
 
 
 
@@ -17,7 +16,6 @@ plaintext_file ="../data/plaintext.txt"
 result_file = "../data/result.txt"
 subkey_file = "../data/subkey_example.txt"
 result_subkey_file = "../data/result_subkey.txt"
-
 
 
 
@@ -161,7 +159,7 @@ write_to_output = [
     "\n\n\nStep 5: AddKey Part 2\n\n",
     "\nSubkey 1 Hex Matrix: ",
     subkey1_hex_matrix,
-    "\n\n\n\n\nAfter RoundKey Hex Matrix (THIS IS THE FINAL ENCRYPTED VALUE.): ",
+    "\n\n\n\n\n\n\n\n!!FINAL ENCRYPTED ARRAY!! After RoundKey Hex Matrix: ",
     add_round_key_hex_1
 ]
 
@@ -182,4 +180,15 @@ key schedule algorithm in AES. Print the next subkey in terminal and write the r
 “../data/result_subkey.txt”. The result needs to be printed and written in hexadecimal.
 '''
 
-subkey0_hex_string = subkeys_hex_string[0]
+new_ascii_subkey = new_subkey(subkey0_hex_string) 
+new_hex_subkey = create_ascii_to_hex_matrix(new_ascii_subkey)
+print("\n\n\nUsing the Subkey Schedule Key Generator, the new_hex_subkey is: ",new_hex_subkey)
+
+output_write = [
+    "\n\n\nAdditionally, Here is the new subkey I generated: ",
+    new_hex_subkey
+]
+
+with open(result_subkey_file, "w") as file:
+    for item in output_write:
+        file.write(str(item) + " ")
