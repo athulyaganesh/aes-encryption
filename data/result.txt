@@ -64,5 +64,8 @@ Subkey 1 Hex Matrix:
 
 
 
-After RoundKey Hex Matrix (THIS IS THE FINAL ENCRYPTED VALUE.): 
+
+
+
+!!FINAL ENCRYPTED ARRAY!! After RoundKey Hex Matrix: 
 [['58', '15', '59', 'cd'], ['47', 'b6', 'd4', '39'], ['08', '1c', 'e2', 'df'], ['8b', 'ba', 'e8', 'ce']]

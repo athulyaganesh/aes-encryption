@@ -38,7 +38,6 @@ def create_hex_to_ascii_matrix(hex_string):
         column = [int(hex_string[j : j + 2], 16) for j in range(i, len(hex_string), 8)]
         matrix.append(column)
     return matrix
-    # return numpy_transpose(numpy_reshape(arr, (-1, 4)))
 
 
 
